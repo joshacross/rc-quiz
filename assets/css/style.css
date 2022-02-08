@@ -1,7 +1,7 @@
 :root {
     --primary-color: #ffffff;
-    --secondary-color: #1a1a1a;
-    --tertiary-color: #00ffc9;
+    --secondary-color: #161e2f;
+    --tertiary-color: #209d5c;
 }
 
 .hide {
@@ -11,8 +11,8 @@
 body {
     margin: 0 5%;
     text-align: center;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     font-family: 'Poppins', sans-serif;
 }
 
@@ -22,8 +22,9 @@ main {
     justify-content: space-between;
 }
 
-header a {
-    color: var(--primary-color);
+header img {
+    background-color: var(--secondary-color);
+    width: 50%;
     margin-top: 3%;
 }
 
@@ -40,10 +41,12 @@ header a {
 
 #quizHeaders {
     display: flex;
-    justify-content: space-between;
     margin: 0 10% 3% 10%;
 }
 
+#quizQuestion {
+    font-size: 200%;
+}
 #inputs {
     padding: 3%;
 }
@@ -59,14 +62,19 @@ input {
 }
 
 .btn {
-    font-size: 100%;
+    font-size: 200%;
     display: flex;
-    background-color: var(--tertiary-color);
-    color: var(--secondary-color);
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
     border-radius: 15px;
-    padding: 5% 20%;
-    margin: 1% 5%;
+    padding: 5% 5%;
+    margin: 0 auto;
     text-decoration: none;
+}
+
+.btn:hover {
+    background-color: var(--tertiary-color);
+    color: var(--primary-color);
 }
 
 .choice-btn {
@@ -76,4 +84,9 @@ input {
     padding: 2% 3%;
     margin: 2% 2%;
     text-decoration: none;
+}
+
+#statusBar {
+    border: 5px solid var(--tertiary-color);
+    width: 10%;
 }

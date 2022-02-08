@@ -5,58 +5,38 @@
 // Declarations
 // var startQuiz = document.getElementById('startQuiz');
 var quizSection = document.getElementById('quizSection');
-var scoreBoard = document.getElementById('scoreBoard');
-var currentScore = document.getElementById('currentScore');
 var quizQuestion = document.getElementById('quizQuestion');
-var choices = document.getElementById('choices');
-var solution = document.getElementById('solution');
-var viewHighScores = document.getElementById('viewHighScores');
 var successMessage = document.getElementById('successMessage');
-var displayHighScores = document.getElementById('displayHighScores');
-var highScoreName = document.getElementById('highScoreName');
-var highScorePoints = document.getElementById('highScorePoints');
-var yourHighScore = document.getElementById('yourHighScore');
 var nameInput = document.getElementById('nameInput');
-var hideItems = document.getElementById('hideItems');
 var directions = document.getElementById('directions');
 var start = document.getElementsByClassName('start');
 // var quizSection = document.getElementById('quizSection').style.display ="none";
 
 hideElements = function() {
-scoreBoard.setAttribute("hidden", false);
-viewHighScores.setAttribute("hidden", true);
+choices.setAttribute("hidden", true);
 successMessage.setAttribute("hidden", true);
-displayHighScores.setAttribute("hidden", true);
-highScoreName.setAttribute("hidden", true);
-highScorePoints.setAttribute("hidden", true);
 };
 
 hideElements();
 
-var time = 30;
-var countdown = document.getElementById('countdown');
-var clock;
-
 var questions = [
     {
-        question: "What does HTML stand for?",
+        question: "Would You Like To Own Your Own Home?",
         choices: [
-            "Hyper-Text Markup Language",
-            "Hex-Tex-Mex-Lex",
-            "Hilbert Taylor's Micro Language",
-            "Hyper-Text Market Language"
+            "Yes",
+            "No"
         ],
-        answer: "Hyper-Text Markup Language"
+        answer: ""
     },
     {
-        question: "Which of the following is not an HTML tag?",
+        question: "What Is Your Estimated Credit Score?",
         choices: [
-            "Doctype",
-            "Paragraph",
-            "Table",
-            "Style"
+            "Excellent",
+            "Good",
+            "Fair",
+            "Poor"
         ],
-        answer: "Style"
+        answer: ""
     },
     {
         question: "What symbol indicates a tag?",
@@ -142,12 +122,7 @@ var currentQuestion = {};
 
 var startQuiz = function() {
     var currentQuestionIndex = 0;
-    yourHighScore = 0;
 
-    
-    // // Initialize countdown timer
-    clock = setInterval(clock, 1000);
-    countdown.textContent = time;
 
     showQuestion();
     //Populate first question
@@ -173,60 +148,16 @@ var startQuiz = function() {
             choices.appendChild(choiceEl);
         });
     }
+}
 
-        function clock(m,s) {
-        // Countdown clock
-        time--;
-        countdown.textContent = time;
-        // If user runs out of time before finishing quix, end quiz
-        if (time <= 0) {
-            quizComplete();
-        }
-
-        if(time <= 0) {
-            time = 0;
-        }
-    }
-
-// Function to react to question choice being clicked. Depending on quiz status could move to next question or end quiz. Will also deduct time from timer if question is answered incorrectly.
-    function clickChoiceButton() {
-        // check to see if user answered question right or wrong
-        if (this.value !== questions[currentQuestionIndex].answer) {
-            time -= 5;
-
-            countdown.textContent = time;
-
-            // Notify quiz taker if they answered right or wrong
-            solution.textContent = "Woops! That is incorrect :("
-            } else {
-            solution.textContent = "Correct! Great job!";
-            }
-            solution.setAttribute("class", "solution");
-
-            setTimeout(function() {
-                solution.setAttribute("class", "solution hide");
-            }, 500);
-
-            currentQuestionIndex++;
-
-            if (currentQuestionIndex === questions.length) {
-                quizComplete();
-            } else {
-                showQuestion ();
-            }
-    }
-
-    // Function for when the quiz is finished
-    function quizComplete() {
-        // Stop timer
-        clearInterval(countdown);
-        // hide question container
-        question.setAttribute("class", "hide");
-        // show end quiz container
-        scoreBoard.setAttribute("hidden", false);
-        // users score equals time remaining
-        yourHighScore.textContent = time;
-    }
+// Function for when the quiz is finished
+function quizComplete() {
+    // hide question container
+    question.setAttribute("class", "hide");
+    // show end quiz container
+    successMessage.setAttribute("hidden", false);
+    // users score equals time remaining
+    yourHighScore.textContent = time;
 }
 
 
