@@ -9,122 +9,67 @@ var successMessage = document.getElementById('successMessage');
 var nameInput = document.getElementById('nameInput');
 var directions = document.getElementById('directions');
 var start = document.getElementsByClassName('start');
+var choices = document.getElementById('choices');
+var hidden = document.getElementsByName('hidden');
 
-hideElements = function() {
-    console.log("objects-hidden")
-choices.setAttribute("hidden", true);
-successMessage.setAttribute("hidden", true);
-};
-
-hideElements();
+var questions = [
+    {
+        question: "When does your current lease end?",
+        choices: [
+            "End of the Month",
+            "Next Month",
+            "3-6 Months",
+            "More than 6 months",
+            "My Lease Has Already Ended"
+        ],
+        value: [
+            5,
+            4,
+            3,
+            2,
+            1
+        ]
+    },
+    {
+        question: "What Is Your Estimated Credit Score?",
+        choices: [
+            "Excellent",
+            "Good",
+            "Fair",
+            "Poor"
+        ],
+        value: [
+            5,
+            4,
+            3,
+            2
+        ]
+    },
+    {
+        question: "How Much Is The Total Down Payment You Would Be Willing To Put Down?",
+        choices: [
+            "0%",
+            "3%",
+            "10%",
+            "20%"
+        ],
+        value: [
+            1,
+            2,
+            3,
+            4
+        ]
+    }
+]
 
 function startQuiz() {
     console.log("quiz started");
+
     var currentQuestionIndex = 0;
 
-
-    var questions = [
-        {
-            question: "Would You Like To Own Your Own Home?",
-            choices: [
-                "Yes",
-                "No"
-            ],
-            answer: ""
-        },
-        {
-            question: "What Is Your Estimated Credit Score?",
-            choices: [
-                "Excellent",
-                "Good",
-                "Fair",
-                "Poor"
-            ],
-            answer: ""
-        },
-        {
-            question: "What symbol indicates a tag?",
-            choices: [
-                "Angled brackets (<>)",
-                "Cureved brackets ({})",
-                "Comma (,)",
-                "Exclamation Mark:  (!)"
-            ],
-            answer: "Angled brackets (<>)"
-        },
-        {
-            question: "Which of these is a genuine tag keyword",
-            choices: [
-                "Header",
-                "Bold",
-                "Body",
-                "Image"
-            ],
-            answer: "Body"
-        },
-        {
-            question: "(T/F) A CSS file can be applied to only one HTML file",
-            choices: [
-                "True",
-                "False"
-            ],
-            answer: "False"
-        },
-        {
-            question: "What is the corect tag for a line break in HTML",
-            choices: [
-                "<brk />",
-                "<line />",
-                "<bk />",
-                "<br />"
-            ],
-            answer: "<br />"
-        },
-        {
-            question: "What does CSS stand for?",
-            choices: [
-                "Computing Style Sheet",
-                "Creative Style System",
-                "Cascading Style Sheet",
-                "Creative Styling Sheet"
-            ],
-            answer: "Cascading Style Sheet"
-        },
-        {
-            question: "Where should a CSS file be referenced in a HTML file?",
-            choices: [
-                "Before any HTML code",
-                "After all HTML code",
-                "Inside the head section",
-                "Inside the body section"
-            ],
-            answer: "Inside the head section"
-        },
-        {
-            question: "What is the correct format for aligning written content to the center of the page in CSS?",
-            choices: [
-                "Text-align: center",
-                "Font-align: center",
-                "Text: align-center",
-                "Font: align-center"
-            ],
-            answer: "Text-align: center"
-        },
-        {
-            question: "What is the correct format for a Div?",
-            choices: [
-                "Div",
-                "<Div>",
-                "<Div />",
-                "<Div></Div>"
-            ],
-            answer: "<Div></Div>"
-        },
-    ]
+    // function displayQuestions () {
 
     var currentQuestion = {};
-
-
 
         // Find question from array of questions
     var currentQuestion = questions[currentQuestionIndex];
@@ -145,7 +90,13 @@ function startQuiz() {
             // Append choice so it displays on page
             choices.appendChild(choiceEl);
         });
-}
+
+    choices.setAttribute(hidden, false);
+
+        
+    }
+
+    // displayQuestions();
 
 // Function for when the quiz is finished
 function quizComplete() {
@@ -158,3 +109,14 @@ function quizComplete() {
 
 
 document.getElementById('startQuiz').addEventListener("click", startQuiz);
+
+
+// When I click startQuiz button >>
+// Then I want to create Questions and choices with text content from an array to display on the screen with a next button.
+// * When a choice is selected > I want to store the selected choice inside an empty choices variable and value inside of an empty value variable
+// When user clicks next, I want to go to create make the next question in the array the current question
+// Once all questions have been exhausted > I want to end question quiz and create a submission form with the information displayed from their choices
+// with a confirmation, email, and consent to terms and service 
+
+// Once clicked, It will submit data store to our database via webhook and show confirmation next steps
+
